@@ -1,37 +1,38 @@
 package com.capg.addressbook;
 
+import java.util.*;
+
 public class AddressBookMain {
+	
+	static Scanner sc=new Scanner(System.in);	
 
-	private String firstName;
-	private String lastName;
-	private String address;
-	private String state;
-	private String city;
-	private int pinCode;
-	private long phoneNumber;
-	private String emailId;
-
-	public AddressBookMain(String firstName, String lastName, String address, String city, String state, int pinCode,
-			long phoneNumber, String emailId) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.pinCode = pinCode;
-		this.phoneNumber = phoneNumber;
-		this.emailId = emailId;
+	int numOfContact=0;
+	private Contact[] contactArray;
+	
+	public AddressBookMain()
+	{
+		contactArray=new Contact[5];
 	}
-
-	@Override
-	public String toString() {
-		return "First Name: " + firstName + " \nLast Name: " + lastName + "\nAddress :" + address + "\nCity: " + city
-				+ "\nPincode: " + pinCode + "\nState: " + state + "\nPhoneNumber: " + phoneNumber + "\nEmail ID: "
-				+ emailId;
+	private void addNewContact(String firstName,String lastName,String address,String city,String state,String pinCode,String mobiileNumber,String emailId)
+	{
+		contactArray[numOfContact]= new Contact(firstName,lastName,address,city,state,pinCode,mobiileNumber,emailId);
+		System.out.println(contactArray[numOfContact]);
+		numOfContact++;
 	}
-
-	public static void main(String args[]) {
-		
-	} 
+	public static void main(String args[])
+	{
+	
+	System.out.print("Enter FirstName,Last Name,address,city,state,pincode,phonenumber,email");
+	String fname=sc.next();
+	String lname=sc.next();
+	String addressNew=sc.next();
+	String cityNew=sc.next();
+	String stateNew=sc.next();
+	String zip=sc.next();
+	String mobiileNumber=sc.next();
+	String email=sc.next();
+	AddressBookMain Contact1=new AddressBookMain();
+	Contact1.addNewContact(fname,lname,addressNew,cityNew,stateNew,zip,mobiileNumber,email);
+	}
 
 }
