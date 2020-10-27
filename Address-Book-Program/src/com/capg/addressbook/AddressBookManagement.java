@@ -8,69 +8,11 @@ import java.util.TreeMap;
 
 public class AddressBookManagement {
 	static Scanner sc = new Scanner(System.in);
-
-	private static Map<String, AddressBookMain> addressMap = new TreeMap<>();
-	public static Map<String, Contact> cityToContactEntryMap = new TreeMap<>();
-	public static Map<String, Contact> stateToContactEntryMap = new TreeMap<>();
-
-	public static void addAddressBook() {
-		AddressBookMain addressBook = new AddressBookMain();
-		System.out.println("Enter the name of the address book");
-		String name = sc.next();
-		addressMap.put(name, addressBook);
-		addressBook.maintainAddressBook();
-	}
-
-	private static void showContactGroupedByCity() {
-		Set<String> listOfCity = cityToContactEntryMap.keySet();
-		for (String cityName : listOfCity) {
-			System.out.println("Contact Entries for CITY: " + cityName);
-			searchPersonInBook(cityName);
-		}
-	}
-
-	private static void showContactGroupedByState() {
-		Set<String> listOfState = stateToContactEntryMap.keySet();
-		for (String stateName : listOfState) {
-			System.out.println("Contact Entries for STATE: " + stateName);
-			searchPersonInBook(stateName);
-		}
-	}
-
-	public void showAddressBooks() {
-
-		System.out.println("\nList of Address Books Added: \n");
-		addressMap.forEach((k, v) -> System.out.println(k + "\n"));
-	}
-
-	public static void searchPersonInBook(String search) {
-		int numberOfPerson = 0;
-		Iterator contactArray = addressMap.entrySet().iterator();
-		while (contactArray.hasNext()) {
-			Map.Entry entry = (Map.Entry) contactArray.next();
-			AddressBookMain a = (AddressBookMain) entry.getValue();
-			List<Contact> list = a.getcontactArray();
-			for (Contact con : list) {
-				if (con.getCity().equals(search) || con.getState().equals(search)) {
-					System.out.println(con);
-					numberOfPerson++;
-				}
-			}
-			if (numberOfPerson == 0)
-				System.out.println("No person was found");
-		}
-	}
-
+	
 	public static void main(String args[]) {
 
 		while (true) {
-			System.out.println("Please Enter your choice");
-			System.out.println("1. Add a new Address Book");
-			System.out.println("2. Search person across all address books");
-			System.out.println("3. Show contact  by city");
-			System.out.println("4. Show contacts by state");
-			System.out.println("5. Exit");
-
+			System.out.println("Please Enter your choice \n1. Add a new Address Book \n2. Search person across all address books\n3. Show contact  by city\n4. Show contacts by state\n5. count contacts  by city\n6. count contacts by state\n7. Exit");
 			int choice = sc.nextInt();
 			switch (choice) {
 			case 1:
@@ -103,9 +45,85 @@ public class AddressBookManagement {
 				showContactGroupedByState();
 				break;
 			case 5:
+				countByCity();
+				break;
+			case 6:
+				countByState();
+				break;
+			case 7:
 				System.exit(0);
 				break;
 			}
+		}
+	}
+
+	private static Map<String, AddressBookMain> addressMap = new TreeMap<>();
+	public static Map<String, Contact> cityToContactEntryMap = new TreeMap<>();
+	public static Map<String, Contact> stateToContactEntryMap = new TreeMap<>();
+
+	public static void addAddressBook() {
+		AddressBookMain addressBook = new AddressBookMain();
+		System.out.println("Enter the name of the address book");
+		String name = sc.next();
+		addressMap.put(name, addressBook);
+		addressBook.maintainAddressBook();
+	}
+
+	private static void showContactGroupedByCity() {
+		Set<String> listOfCity = cityToContactEntryMap.keySet();
+		for (String cityName : listOfCity) {
+			System.out.println("Contact Entries for CITY: " + cityName);
+			searchPersonInBook(cityName);
+		}
+	}
+
+	private static void showContactGroupedByState() {
+		Set<String> listOfState = stateToContactEntryMap.keySet();
+		for (String stateName : listOfState) {
+			System.out.println("Contact Entries for STATE: " + stateName);
+			searchPersonInBook(stateName);
+		}
+	}
+
+	public static void countByCity() {
+		Set<String> listOfCity = cityToContactEntryMap.keySet();
+		for (String cityName : listOfCity) {
+			Contact contactNumber = cityToContactEntryMap.get(cityName);
+			System.out.println("No of contact entries for CITY " + cityName + " "
+					+ ((Map<String, AddressBookMain>) contactNumber).size());
+		}
+	}
+
+	public static void countByState() {
+		Set<String> listOfState = stateToContactEntryMap.keySet();
+		for (String stateName : listOfState) {
+			Contact contactNumber = stateToContactEntryMap.get(stateName);
+			System.out.println("No of contact entries for STATE " + stateName + " "
+					+ ((Map<String, AddressBookMain>) contactNumber).size());
+		}
+	}
+
+	public void showAddressBooks() {
+
+		System.out.println("List of Address Books Added: ");
+		addressMap.forEach((k, v) -> System.out.println(k + "\n"));
+	}
+
+	public static void searchPersonInBook(String search) {
+		int numberOfPerson = 0;
+		Iterator contactArray = addressMap.entrySet().iterator();
+		while (contactArray.hasNext()) {
+			Map.Entry entry = (Map.Entry) contactArray.next();
+			AddressBookMain a = (AddressBookMain) entry.getValue();
+			List<Contact> list = a.getcontactArray();
+			for (Contact con : list) {
+				if (con.getCity().equals(search) || con.getState().equals(search)) {
+					System.out.println(con);
+					numberOfPerson++;
+				}
+			}
+			if (numberOfPerson == 0)
+				System.out.println("No person was found");
 		}
 	}
 }
