@@ -28,11 +28,11 @@ public class AddressBookMain {
 		String firstName;
 		while (true) {
 			System.out.println("Enter First Name");
-			String firstNames = sc.next();
-			if (checkDuplicateName(firstNames))
+			String firstNameEntry = sc.next();
+			if (checkDuplicateName(firstNameEntry))
 				continue;
 			else {
-				firstName = firstNames;
+				firstName = firstNameEntry;
 				break;
 			}
 		}
@@ -127,8 +127,8 @@ public class AddressBookMain {
 	}
 
 	public boolean checkDuplicateName(String name) {
-		for (Contact cd : contactArray) {
-			if (cd.getFirstName().equals(name)) {
+		for (Contact contactCheck : contactArray) {
+			if (contactCheck.getFirstName().equals(name)) {
 				System.out.println("A Person is already having this name!\n");
 				return true;
 			}
