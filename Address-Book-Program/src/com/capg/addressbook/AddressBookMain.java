@@ -1,6 +1,8 @@
 package com.capg.addressbook;
 
+
 import java.util.*;
+import java.util.function.Predicate;
 
 public class AddressBookMain {
 
@@ -16,25 +18,35 @@ public class AddressBookMain {
 	}
 
 	public void addContact() {
-		System.out.println("Enter First Name");
-		String firstName = sc.next();
-		System.out.println("Enter last Name");
-		String lastName = sc.next();
-		System.out.println("Enter the Address");
-		String address = sc.next();
-		System.out.println("Enter the City");
-		String city = sc.next();
-		System.out.println("Enter the State");
-		String state = sc.next();
-		System.out.println("Enter the Pincode");
-		String zip = sc.next();
-		System.out.println("Enter the Number");
-		String mobile = sc.next();
-		System.out.println("Enter the Email");
-		String email = sc.next();
-		Contact obj = new Contact(firstName, lastName, address, city, state, zip, mobile, email);
-		contactArray.add(obj);
-		contactMap.put(firstName, obj);
+
+		String firstName;
+		while (true) {
+			System.out.println("Enter First Name");
+			String firstNames = sc.next();
+			if (checkDuplicateName(firstNames))
+				continue;
+			else {
+				firstName = firstNames;
+				break;
+			}
+		}
+			System.out.println("Enter last Name");
+			String lastName = sc.next();
+			System.out.println("Enter the Address");
+			String address = sc.next();
+			System.out.println("Enter the City");
+			String city = sc.next();
+			System.out.println("Enter the State");
+			String state = sc.next();
+			System.out.println("Enter the Pincode");
+			String zip = sc.next();
+			System.out.println("Enter the Number");
+			String mobile = sc.next();
+			System.out.println("Enter the Email");
+			String email = sc.next();
+			Contact obj = new Contact(firstName, lastName, address, city, state, zip, mobile, email);
+			contactArray.add(obj);
+			contactMap.put(firstName, obj);
 	}
 
 	public void printContact() {
@@ -102,9 +114,19 @@ public class AddressBookMain {
 				System.out.println("Exit");
 				exitFlag = false;
 				break;
-			default :
+			default:
 				System.out.println("Choose correct option");
 			}
 		}
+	}
+
+	public boolean checkDuplicateName(String name) {
+		for (Contact cd : contactArray) {
+			if (cd.getFirstName().equals(name)) {
+				System.out.println("A Person is already having this name!\n");
+				return true;
+			}
+		}
+		return false;
 	}
 }
