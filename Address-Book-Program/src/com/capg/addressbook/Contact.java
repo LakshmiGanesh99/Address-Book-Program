@@ -1,8 +1,7 @@
 package com.capg.addressbook;
 
 public class Contact {
-
-	public String firstName;
+    public String firstName;
     public String lastName;
     public String address;
     public String state;
@@ -22,9 +21,57 @@ public class Contact {
      this.mobile=mobileNumber;
      this.email=emailId;
     }
+    public String getFirstName(){
+        return this.firstName;
+    }
+    public void setFirstName(String firstName){
+        this.firstName=firstName;
+    }
+    public String getLastName(){
+        return this.lastName;
+    }
+    public void setLastName(String lastName){
+        this.lastName=lastName;
+    }
+ public String getAddress(){
+        return this.address;
+    }
+    public void setAddress(String address){
+        this.address=address;
+    }
+    public String getCity(){
+        return this.city;
+    }
+    public void setCity(String city){
+        this.city=city;
+    }
+    public String getState(){
+        return this.state;
+    }
+    public void setState(String state){
+        this.state = state;
+    }
+    public String getZip(){
+        return this.zip;
+    }
+    public void setZip(String pinCode ){
+        this.zip =pinCode ;
+    }
+    public String getMobile(){
+        return this.mobile;
+    }
+    public void setMobile(String phoneNumber ){
+        this.mobile=phoneNumber ;
+    }
+    public String getEmail(){
+        return this.email;
+    }
+    public void setEmail(String emailId){
+        this.email =emailId ;
+    }
 @Override
 public String toString()
     {
-    return "First Name: "+firstName+" \nLast Name: "+lastName+"\nAddress :"+address+"\nCity: "+city+"\nPincode: "+zip+"\nState: "+state+"\nPhoneNumber: "+mobile+"\nEmail ID: "+email;
+    return "First Name:  "+firstName+" \nLast Name: "+lastName+"\nAddress :"+address+"\nCity: "+city+"\nPincode: "+zip+"\nState: "+state+"\nPhoneNumber: "+mobile+"\nEmail ID: "+email;
     }
 }
