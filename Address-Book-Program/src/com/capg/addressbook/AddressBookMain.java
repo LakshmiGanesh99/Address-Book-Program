@@ -15,9 +15,24 @@ public class AddressBookMain {
 		contactMap = new HashMap<>();
 	}
 
-	public void addContact(String firstName, String lastName, String address, String city, String state,
-			String pinCode, String phoneNumber, String emailId) {
-		Contact obj = new Contact(firstName, lastName, address, city, state, pinCode, phoneNumber, emailId);
+	public void addContact() {
+		System.out.println("Enter First Name");
+		String firstName = sc.next();
+		System.out.println("Enter last Name");
+		String lastName = sc.next();
+		System.out.println("Enter the Address");
+		String address = sc.next();
+		System.out.println("Enter the City");
+		String city = sc.next();
+		System.out.println("Enter the State");
+		String state = sc.next();
+		System.out.println("Enter the Pincode");
+		String zip = sc.next();
+		System.out.println("Enter the Number");
+		String mobile = sc.next();
+		System.out.println("Enter the Email");
+		String email = sc.next();
+		Contact obj = new Contact(firstName, lastName, address, city, state, zip, mobile, email);
 		contactArray.add(obj);
 		contactMap.put(firstName, obj);
 	}
@@ -59,20 +74,18 @@ public class AddressBookMain {
 
 	public static void main(String args[]) {
 
-		System.out.print("Enter FirstName,Last Name,address,city,state,pincode,phonenumber,email");
-		String fname = sc.next();
-		String lname = sc.next();
-		String addressNew = sc.next();
-		String cityNew = sc.next();
-		String stateNew = sc.next();
-		String zip = sc.next();
-		String mobiileNumber = sc.next();
-		String email = sc.next();
 		AddressBookMain contact = new AddressBookMain();
-		contact.addContact(fname, lname, addressNew, cityNew, stateNew, zip, mobiileNumber, email);
-		contact.printContact();
-		contact.editContact();
-		contact.deleteContact();
-		contact.printContact();
+		while(true)
+		{
+		System.out.println("Do You Want to Add Contact(Y/N)");
+		char choice=sc.next().charAt(0);
+			if(choice=='Y')
+			{
+			contact.addContact();
+			contact.printContact();
+			}
+			else
+			break;
+		}
 	}
 }
